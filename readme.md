@@ -89,7 +89,7 @@ The main entry point is:
 
 `train_chunked.py`
 
-This script runs the chunked Cellpose training workflow. Parameters are defined directly in the script or through the corresponding local configuration logic.
+This script runs the chunked Cellpose training workflow. Parameters are defined directly in the script.
 
 ### StarDist3D
 
@@ -132,6 +132,34 @@ nnU-Net requires additional dataset conversion, environment variables, and folde
 
 `nnunet/README.md`
 
+## Prediction generation
+
+After training, each model folder contains model-specific inference/evaluation scripts that generate prediction masks for the corresponding dataset.
+
+Depending on the model, prediction generation is implemented either as Python scripts or Jupyter notebooks. These scripts are specific to each model family because preprocessing, inference, postprocessing, and dependency requirements differ between methods.
+
+The expected workflow is:
+
+1. Train a model using the corresponding model-specific training script.
+
+2. Run the model-specific inference/evaluation script located inside the same model folder.
+
+3. Save generated prediction masks into the corresponding dataset result folder.
+
+4. Once predictions from different models are saved under the dataset result directory, they can be jointly evaluated using the unified scripts in `eval_scripts/`.
+
+In general, the evaluation pipeline expects predictions to be organized under a dataset-specific `results/` directory, for example:
+
+<dataset>/
+├── images/
+├── masks/
+└── results/
+    ├── nnunet_model_predictions/
+    ├── stardist_model_predictions/
+    ├── cellpose_model_predictions/
+    ├── microsam_model_predictions/
+    └── unet_model_predictions/
+
 ## Evaluation
 
 The `eval_scripts/` folder contains the unified evaluation pipeline used to compare all model predictions across datasets.
@@ -158,27 +186,30 @@ The evaluation includes:
 
 ## Evaluation workflow
 
+
 The expected evaluation workflow is:
 
-1. Run model inference and save predictions under the corresponding dataset result folders.
+1. Train each model using its model-specific training pipeline.
 
-2. Open:
+2. Generate prediction masks using the model-specific inference/evaluation scripts located inside each model folder.
+
+3. Save the generated predictions into the corresponding dataset `results/` directory.
+
+4. Open:
 
    `eval_scripts/benchmark_evaluation.ipynb`
 
-3. Set the dataset, ground-truth, prediction, and output paths inside the notebook.
+5. Set the dataset, ground-truth, prediction, and output paths inside the notebook.
 
-4. Run the notebook to generate per-dataset evaluation CSV files.
+6. Run the notebook to evaluate all available prediction folders for the selected dataset.
 
-5. Aggregate all dataset-level evaluation files:
+7. Aggregate all dataset-level evaluation files:
 
    `python eval_scripts/aggregate_eval.py`
 
-6. Generate aggregated failure-mode summary tables:
+8. Generate aggregated failure-mode summary tables:
 
-   `python eval_scripts/stats_aggregated.py`
-
-The aggregation scripts use paths defined inside the scripts. Edit these paths before running the scripts on a different machine or dataset layout.
+   `python eval_scripts/stats_aggregated.py
 
 ## Output files
 
