@@ -150,6 +150,7 @@ The expected workflow is:
 
 In general, the evaluation pipeline expects predictions to be organized under a dataset-specific `results/` directory, for example:
 
+```text
 <dataset>/
 ├── images/
 ├── masks/
@@ -159,6 +160,7 @@ In general, the evaluation pipeline expects predictions to be organized under a 
     ├── cellpose_model_predictions/
     ├── microsam_model_predictions/
     └── unet_model_predictions/
+```
 
 ## Evaluation
 
