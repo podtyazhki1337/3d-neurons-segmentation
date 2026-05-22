@@ -4,6 +4,8 @@ Code for training, inference, and evaluation of deep learning models for 3D neur
 
 This repository accompanies a research project on benchmarking 3D neuron instance segmentation models across label-free microscopy modalities and biological datasets.
 
+This code, weights and dataset accompanies the manuscript: "Cross-Modality and Multi-Species Generalization for 3D Neuron Segmentation in Label-Free Microscopy: A Large Annotated Dataset and Systematic Benchmark."
+
 ## Description
 
 This repository provides model-specific training and inference pipelines for 3D neuron segmentation in volumetric microscopy images.
