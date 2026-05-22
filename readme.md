@@ -30,6 +30,9 @@ https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation
 
 Input data should be prepared separately as 3D microscopy volumes with corresponding instance masks.
 
+The dataset is provided on Zenodo:
+https://doi.org/10.5281/zenodo.19812778
+
 ## Repository structure
 
 | Module | Purpose | Configuration | Main entry point |
