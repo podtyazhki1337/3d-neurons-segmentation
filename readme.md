@@ -1,4 +1,4 @@
-# 3D Neuron Segmentation Benchmark
+# Cross-Modality and Multi-Species Generalization for 3D Neuron Segmentation in Label-Free Microscopy: A Large Annotated Dataset and Systematic Benchmark
 
 Code for training, inference, and evaluation of deep learning models for 3D neuron segmentation in volumetric microscopy data.
 
