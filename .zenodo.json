@@ -1,0 +1,67 @@
+{
+  "title": "3d-neurons-segmentation: code for the XSoma3D dataset and benchmark",
+  "upload_type": "software",
+  "description": "<p>Code accompanying the article “XSoma3D a large scale neuronal dataset revealing cross species generalization in label free microscopy”. It contains the training code of the benchmarked methods (nnU-Net v2, 3D U-Net, StarDist3D, Cellpose 3, Cellpose-SAM, micro-SAM), the evaluation scripts and the <code>neuroseg</code> package, which downloads the XSoma3D dataset from Zenodo, loads the trained models from Hugging Face and reproduces the reported test results.</p><p>Dataset: https://doi.org/10.5281/zenodo.19812777. Trained models: https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation.</p>",
+  "creators": [
+    {
+      "name": "Maiurov, Miroslav",
+      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary"
+    },
+    {
+      "name": "Pál, Viktor",
+      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary"
+    },
+    {
+      "name": "Péterfi, Zoltán",
+      "affiliation": "University of Szeged, Szeged, Hungary"
+    },
+    {
+      "name": "Stellato, Mariachiara",
+      "affiliation": "University of Bologna, Bologna, Italy"
+    },
+    {
+      "name": "Molnár, Gábor",
+      "affiliation": "University of Szeged, Szeged, Hungary"
+    },
+    {
+      "name": "Tamás, Gábor",
+      "affiliation": "University of Szeged, Szeged, Hungary"
+    },
+    {
+      "name": "Piccinini, Filippo",
+      "affiliation": "University of Bologna, Bologna, Italy"
+    },
+    {
+      "name": "Horváth, Péter",
+      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary"
+    }
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "keywords": [
+    "3D segmentation",
+    "neurons",
+    "label-free microscopy",
+    "Dodt gradient contrast",
+    "oblique illumination",
+    "deep learning",
+    "benchmark",
+    "nnU-Net",
+    "Cellpose",
+    "StarDist",
+    "micro-SAM"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.19812777",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    }
+  ]
+}
