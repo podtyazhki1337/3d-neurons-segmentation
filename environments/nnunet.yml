@@ -1,0 +1,16 @@
+# nnU-Net v2 (inference, evaluation, training). Versions used for the manuscript.
+# conda env create -f environments/nnunet.yml && conda activate neuroseg-nnunet
+name: neuroseg-nnunet
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch==2.6.0
+      - nnunetv2==2.6.4
+      - connected-components-3d==3.26.1
+      - scipy
+      - tifffile
+      - imagecodecs
+      - huggingface_hub

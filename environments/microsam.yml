@@ -1,0 +1,12 @@
+# micro-SAM (inference, evaluation, fine-tuning). micro-sam is distributed on conda-forge.
+# conda env create -f environments/microsam.yml && conda activate neuroseg-microsam
+name: neuroseg-microsam
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - micro_sam=1.7.5
+  - pytorch=2.6
+  - scipy
+  - tifffile
+  - imagecodecs
+  - huggingface_hub

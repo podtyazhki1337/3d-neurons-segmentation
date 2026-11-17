@@ -1,0 +1,15 @@
+# Cellpose 3 (inference, evaluation, training). Versions used for the manuscript.
+# conda env create -f environments/cellpose3.yml && conda activate neuroseg-cellpose3
+name: neuroseg-cellpose3
+channels: [conda-forge]
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - torch==2.4.1
+      - cellpose==3.0.11
+      - numpy<2
+      - scipy
+      - tifffile
+      - imagecodecs
+      - huggingface_hub

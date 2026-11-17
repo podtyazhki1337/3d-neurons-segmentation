@@ -1,0 +1,17 @@
+# Cellpose-SAM (cellpose 4; inference, evaluation, fine-tuning with cellpose_sam/train_cpsam.py).
+# conda env create -f environments/cellpose4.yml && conda activate neuroseg-cellpose4
+name: neuroseg-cellpose4
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch==2.6.0
+      - torchvision==0.21.0
+      - cellpose==4.0.5
+      - numpy==1.26.4
+      - scipy
+      - tifffile
+      - imagecodecs
+      - huggingface_hub

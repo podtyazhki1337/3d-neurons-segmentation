@@ -1,0 +1,19 @@
+# StarDist3D and 3D U-Net (TensorFlow/Keras; inference, evaluation, training). Versions used for the manuscript.
+# conda env create -f environments/tensorflow.yml && conda activate neuroseg-tf
+name: neuroseg-tf
+channels: [conda-forge]
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - tensorflow[and-cuda]==2.18.0
+      - keras==3.12.0
+      - stardist==0.9.1
+      - csbdeep==0.8.1
+      - numpy==1.26.4
+      - scikit-image==0.25.2
+      - connected-components-3d==3.26.1
+      - scipy
+      - tifffile
+      - imagecodecs
+      - huggingface_hub
