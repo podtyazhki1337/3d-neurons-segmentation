@@ -1,4 +1,4 @@
-# The large multi species XSoma3D resource reveals cross species generalization in label free neuron segmentation
+# XSoma3D a large scale neuronal dataset revealing cross species generalization in label free microscopy
 
 Code for **XSoma3D**, the dataset and benchmark of 3D neuronal soma segmentation in label-free microscopy (oblique illumination and Dodt
 gradient contrast, DGC) of rat, mouse and human brain slices.
