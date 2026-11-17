@@ -182,6 +182,11 @@ class MicroSAM(Model):
         super().__init__(spec, path, device)
         from micro_sam.automatic_segmentation import get_predictor_and_segmenter
         ckpt = os.path.join(path, "best.pt") if path else None
+        if device.startswith("cuda"):  # micro_sam accepts only "cpu", "cuda" or "mps", not "cuda:<index>"
+            import torch
+            if ":" in device:
+                torch.cuda.set_device(int(device.split(":")[1]))
+            device = "cuda"
         self.predictor, self.segmenter = get_predictor_and_segmenter(model_type="vit_b_lm", checkpoint=ckpt,
                                                                      device=device, segmentation_mode="ais",
                                                                      is_tiled=False)
