@@ -42,7 +42,7 @@ class Model:
 
 
 class NnUNet(Model):
-    def __init__(self, spec, path, device, tta=True):
+    def __init__(self, spec, path, device, tta=True, low_memory=False):
         super().__init__(spec, path, device)
         import torch
         import nnunetv2.inference.predict_from_raw_data as P
@@ -56,7 +56,7 @@ class NnUNet(Model):
             return cls
         P.recursive_find_python_class = find
         self.predictor = P.nnUNetPredictor(tile_step_size=0.5, use_gaussian=True, use_mirroring=tta,
-                                           perform_everything_on_device=device.startswith("cuda"),
+                                           perform_everything_on_device=device.startswith("cuda") and not low_memory,
                                            device=torch.device(device), verbose=False, verbose_preprocessing=False,
                                            allow_tqdm=False)
         self.predictor.initialize_from_trained_model_folder(path, use_folds=(0,), checkpoint_name="checkpoint_best.pth")

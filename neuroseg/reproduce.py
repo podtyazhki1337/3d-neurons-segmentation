@@ -78,6 +78,8 @@ def main():
                     help="transfer: nnU-Net v2 transfer and pooling experiments (Tables 3 and 4)")
     ap.add_argument("--datasets", nargs="*", default=None, help="within-domain: subset of datasets (default: all)")
     ap.add_argument("--out", default="results")
+    ap.add_argument("--low-memory", action="store_true",
+                    help="nnU-Net: combine the sliding-window predictions on the CPU (less GPU memory, same result)")
     ap.add_argument("--device", default=None)
     a = ap.parse_args()
     tag = a.method + (f"_{a.variant}" if a.variant else "")
@@ -101,7 +103,8 @@ def main():
     allrows, model, loaded = [], None, None
     for label, train, ds, ref in jobs:
         if loaded != train:
-            model = load_model(a.method, train, a.variant, a.device)
+            model = load_model(a.method, train, a.variant, a.device,
+                               **({"low_memory": a.low_memory} if a.method == "nnunet" else {}))
             loaded = train
         print(f"{label}: model {model.spec['name']} on {ds}", flush=True)
         rows = run(model, a.data, ds, os.path.join(out, label, ds), a.method)

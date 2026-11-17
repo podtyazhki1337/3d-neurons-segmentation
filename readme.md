@@ -9,6 +9,9 @@ gradient contrast, DGC) of rat, mouse and human brain slices.
 | Trained models (all methods and training sets) | Hugging Face, https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation |
 | Code | this repository |
 
+**New to Python or conda? Follow the step-by-step guide [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)**
+(installation, a first segmentation, viewing the result, your own data, common problems).
+
 The `neuroseg` package connects the three: it downloads the data from Zenodo, loads the released weights from
 Hugging Face and runs the inference pipelines of the manuscript (normalisation, network, post-processing), so
 that the published test results can be reproduced and the models applied to new stacks without editing
@@ -66,6 +69,7 @@ write_labels("my_stack_labels.tif", labels)
   `stardist3d` `noaug` (default) | `lightaug`, `microsam` `pretrained` (zero-shot vit_b_lm).
 * Input: TIFF stacks ordered (Z, Y, X); output: TIFF label stacks of the same shape and a log
   (`neuroseg_predict.json`).
+* `--device cpu` runs without a GPU; `--low-memory` lowers the GPU memory of nnU-Net v2 (same result).
 
 Example with a stack of the dataset (≈1.3 GB download):
 

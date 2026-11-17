@@ -33,12 +33,14 @@ def main():
                          "microsam: pretrained for the zero-shot vit_b_lm model")
     ap.add_argument("--input", required=True, help="a TIFF stack or a folder of TIFF stacks")
     ap.add_argument("--output", required=True)
+    ap.add_argument("--low-memory", action="store_true",
+                    help="nnU-Net: combine the sliding-window predictions on the CPU (less GPU memory, same result)")
     ap.add_argument("--device", default=None, help="cuda, cuda:1, cpu (default: cuda if available)")
     ap.add_argument("--no-tta", action="store_true", help="nnU-Net: switch off mirroring (faster, slightly different)")
     a = ap.parse_args()
 
     files = sorted(glob.glob(os.path.join(a.input, "*.tif*"))) if os.path.isdir(a.input) else [a.input]
-    kw = {"tta": not a.no_tta} if a.method == "nnunet" else {}
+    kw = {"tta": not a.no_tta, "low_memory": a.low_memory} if a.method == "nnunet" else {}
     model = load_model(a.method, a.model, a.variant, a.device, **kw)
     os.makedirs(a.output, exist_ok=True)
     log = []
