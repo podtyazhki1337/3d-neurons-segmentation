@@ -1,5 +1,4 @@
-"""Download the XSoma3D dataset from Zenodo and unpack it (version used in the manuscript,
-https://doi.org/10.5281/zenodo.20797635; all versions: https://doi.org/10.5281/zenodo.19812777).
+"""Download the XSoma3D dataset from Zenodo (https://doi.org/10.5281/zenodo.19812777) and unpack it.
 
     python -m neuroseg.download_data --out data                      # all six species-modality sets (~8.4 GB)
     python -m neuroseg.download_data --out data --datasets rat_oblique
@@ -16,15 +15,18 @@ import shutil
 import urllib.request
 import zipfile
 
-from .registry import DATASETS, ZENODO_RECORD, resolve_dataset
+from .registry import DATASETS, ZENODO_DOI, ZENODO_RECORD, resolve_dataset
 
+# the concept record redirects to the latest version of the dataset
 API = f"https://zenodo.org/api/records/{ZENODO_RECORD}"
 HEADERS = {"User-Agent": "neuroseg-download", "Accept": "application/json"}
 
 
 def _files():
     with urllib.request.urlopen(urllib.request.Request(API, headers=HEADERS)) as r:
-        return {f["key"]: f for f in json.load(r)["files"]}
+        rec = json.load(r)
+    print(f"Zenodo record {rec['id']} (latest version of https://doi.org/{ZENODO_DOI})")
+    return {f["key"]: f for f in rec["files"]}
 
 
 def download(out: str, datasets=DATASETS, keep_zip: bool = False):
@@ -34,6 +36,9 @@ def download(out: str, datasets=DATASETS, keep_zip: bool = False):
         target = os.path.join(out, ds)
         if os.path.exists(os.path.join(target, "split.json")):
             print(f"{ds}: present, skipped"); continue
+        if f"{ds}.zip" not in files:
+            raise SystemExit(f"{ds}.zip is not in the latest version of https://doi.org/{ZENODO_DOI} "
+                             f"(files: {', '.join(sorted(files))})")
         f = files[f"{ds}.zip"]
         zpath = os.path.join(out, f"{ds}.zip")
         if not (os.path.exists(zpath) and os.path.getsize(zpath) == f["size"]):

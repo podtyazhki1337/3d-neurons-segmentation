@@ -5,7 +5,7 @@ gradient contrast, DGC) of rat, mouse and human brain slices.
 
 | Resource | Link |
 |---|---|
-| XSoma3D dataset (240 annotated 3D stacks, train/val/test split) | Zenodo, https://doi.org/10.5281/zenodo.19812777 (all versions; the manuscript uses version https://doi.org/10.5281/zenodo.20797635) |
+| XSoma3D dataset (240 annotated 3D stacks, train/val/test split) | Zenodo, https://doi.org/10.5281/zenodo.19812777 |
 | Trained models (all methods and training sets) | Hugging Face, https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation |
 | Code | this repository |
 
