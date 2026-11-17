@@ -1,11 +1,11 @@
-# A large-scale multi-species resource reveals cross-species generalization in label-free 3D neuron segmentation
+# The large multi species XSoma3D resource reveals cross species generalization in label free neuron segmentation
 
-Code for the benchmark of 3D neuronal soma segmentation in label-free microscopy (oblique illumination and Dodt
+Code for **XSoma3D**, the dataset and benchmark of 3D neuronal soma segmentation in label-free microscopy (oblique illumination and Dodt
 gradient contrast, DGC) of rat, mouse and human brain slices.
 
 | Resource | Link |
 |---|---|
-| Dataset (240 annotated 3D stacks, train/val/test split) | Zenodo, https://doi.org/10.5281/zenodo.20797635 |
+| XSoma3D dataset (240 annotated 3D stacks, train/val/test split) | Zenodo, https://doi.org/10.5281/zenodo.19812777 (all versions; the manuscript uses version https://doi.org/10.5281/zenodo.20797635) |
 | Trained models (all methods and training sets) | Hugging Face, https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation |
 | Code | this repository |
 
@@ -150,7 +150,7 @@ The training settings of the released models are listed in Supplementary Table S
 ## Citation
 
 If you use the data, code or models, please cite the associated publication (reference to be added on
-publication) and the dataset (https://doi.org/10.5281/zenodo.20797635).
+publication) and the XSoma3D dataset (https://doi.org/10.5281/zenodo.19812777).
 
 ## License
 

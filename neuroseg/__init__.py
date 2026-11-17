@@ -1,4 +1,4 @@
-"""neuroseg: inference, evaluation and data access for the label-free 3D neuron segmentation benchmark.
+"""neuroseg: inference, evaluation and data access for the XSoma3D label-free 3D neuron segmentation benchmark.
 
     from neuroseg import load_model, read_volume
     model = load_model("nnunet", "rat_dgc")          # weights from the Hugging Face Hub

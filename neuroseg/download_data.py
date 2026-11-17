@@ -1,4 +1,5 @@
-"""Download the dataset from Zenodo (https://doi.org/10.5281/zenodo.20797635) and unpack it.
+"""Download the XSoma3D dataset from Zenodo and unpack it (version used in the manuscript,
+https://doi.org/10.5281/zenodo.20797635; all versions: https://doi.org/10.5281/zenodo.19812777).
 
     python -m neuroseg.download_data --out data                      # all six species-modality sets (~8.4 GB)
     python -m neuroseg.download_data --out data --datasets rat_oblique

@@ -1,7 +1,8 @@
 """Released models: where their files are on the Hugging Face Hub and the inference settings used in the manuscript.
 
 Hub repository: https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation
-Dataset (Zenodo): https://doi.org/10.5281/zenodo.20797635
+XSoma3D dataset (Zenodo, all versions): https://doi.org/10.5281/zenodo.19812777
+Version used in the manuscript and downloaded by neuroseg: https://doi.org/10.5281/zenodo.20797635 (ZENODO_RECORD)
 
 Dataset names are the archive names on Zenodo. A model is selected by its method and the dataset (or pooled
 dataset) it was trained on, e.g. ("nnunet", "rat_neurons_dodt") or ("nnunet", "all_dgc").
