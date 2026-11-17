@@ -7,7 +7,7 @@ gradient contrast, DGC) of rat, mouse and human brain slices.
 |---|---|
 | XSoma3D dataset (240 annotated 3D stacks, train/val/test split) | Zenodo, https://doi.org/10.5281/zenodo.19812777 |
 | Trained models (all methods and training sets) | Hugging Face, https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation |
-| Code | this repository |
+| Code | this repository; the release used in the article (v1.0.0) is archived on Zenodo, https://doi.org/10.5281/zenodo.24320772 |
 
 **New to Python or conda? Follow the step-by-step guide [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)**
 (installation, a first segmentation, viewing the result, your own data, common problems).
@@ -150,7 +150,8 @@ The training settings of the released models are listed in Supplementary Table S
 ## Citation
 
 If you use the data, code or models, please cite the associated publication (reference to be added on
-publication) and the XSoma3D dataset (https://doi.org/10.5281/zenodo.19812777).
+publication), the XSoma3D dataset (https://doi.org/10.5281/zenodo.19812777) and, for the code, its Zenodo archive
+(https://doi.org/10.5281/zenodo.24320772).
 
 ## License
 
