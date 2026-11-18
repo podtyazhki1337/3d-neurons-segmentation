@@ -4,7 +4,8 @@ Hub repository: https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation
 XSoma3D dataset (Zenodo): https://doi.org/10.5281/zenodo.19812777
 
 Dataset names are the archive names on Zenodo. A model is selected by its method and the dataset (or pooled
-dataset) it was trained on, e.g. ("nnunet", "rat_neurons_dodt") or ("nnunet", "all_dgc").
+dataset) it was trained on, e.g. ("nnunet", "rat_neurons_dodt") or ("nnunet", "all_dgc"). Pooled models exist for
+nnU-Net v2 and Cellpose-SAM.
 """
 from __future__ import annotations
 
@@ -43,6 +44,9 @@ NNUNET_POSTPROC = {
     "Dataset105_XD_AllSpecies_Mixed": (0.6, 20000, 4), "Dataset108_XM_Human_DodtOblique": (0.3, 30000, 1),
 }
 
+POOLED = [k for k in NNUNET_ID if k not in DATASETS]  # rat_mouse_dgc, ..., human_dgc_oblique
+POOLED_METHODS = ["nnunet", "cellpose_sam"]  # methods with released models of the pooled training sets
+
 # ---------------------------------------------------------------- 3D U-Net (variant: no_aug | light_aug)
 # post-processing selected on validation data: threshold, min. volume, min. z-extent; 6-connected components
 UNET3D_POSTPROC = {
@@ -76,7 +80,7 @@ def resolve_dataset(name: str) -> str:
     if name in DATASETS or name in NNUNET_ID or name.startswith("Dataset"):
         return name
     raise ValueError(f"unknown dataset/model name {name!r}; use one of {DATASETS + list(ALIASES)} "
-                     f"or, for nnU-Net, {[k for k in NNUNET_ID if k not in DATASETS]}")
+                     f"or, for nnU-Net v2 and Cellpose-SAM, {POOLED}")
 
 
 def model_spec(method: str, trained_on: str, variant: str | None = None) -> dict:
@@ -90,6 +94,10 @@ def model_spec(method: str, trained_on: str, variant: str | None = None) -> dict
                     files=[f"{sub}/plans.json", f"{sub}/dataset.json", f"{sub}/dataset_fingerprint.json",
                            f"{sub}/fold_0/checkpoint_best.pth"],
                     postproc=NNUNET_POSTPROC[did], connectivity=26)
+    if method == "cellpose_sam" and trained_on not in DATASETS:  # pooled training set, hub folder as for nnU-Net v2
+        did = trained_on if trained_on.startswith("Dataset") else NNUNET_ID[trained_on]
+        return dict(method=method, name=f"cellpose_sam_{did}", subfolder=f"cellpose_sam/{did}",
+                    files=[f"cellpose_sam/{did}/cpsam_finetuned"])
     if trained_on not in DATASETS:
         raise ValueError(f"{method}: models exist for the six datasets only, not for {trained_on!r}")
     if method == "unet3d":

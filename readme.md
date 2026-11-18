@@ -60,7 +60,7 @@ write_labels("my_stack_labels.tif", labels)
 ```
 
 * `--model` is the training data of the model: `human_dgc`, `mouse_dgc`, `rat_dgc`, `human_oblique`,
-  `rat_oblique`, `mouse_oblique` (or the Zenodo names, e.g. `rat_neurons_dodt`); for nnU-Net v2 also the pooled
+  `rat_oblique`, `mouse_oblique` (or the Zenodo names, e.g. `rat_neurons_dodt`); for nnU-Net v2 and Cellpose-SAM also the pooled
   models `rat_mouse_dgc`, `rat_mouse_oblique`, `all_dgc`, `all_oblique`, `all_dgc_oblique`, `human_dgc_oblique`.
 * Use a model of the same imaging modality as your images. The models were trained on the native voxel grid:
   DGC 1 × 0.115 × 0.115 µm, oblique 1 × 0.171 × 0.171 µm (z, y, x). In the manuscript, the pooled models
@@ -85,6 +85,7 @@ python -m neuroseg.predict --method nnunet --model rat_oblique \
 python -m neuroseg.download_data --out data                                        # all six sets, ~8.4 GB
 python -m neuroseg.reproduce --data data --method nnunet                           # within-domain, 6 test sets
 python -m neuroseg.reproduce --data data --method nnunet --experiment transfer     # Tables 3 and 4
+python -m neuroseg.reproduce --data data --method cellpose_sam --experiment transfer   # Supplementary Table S12
 python -m neuroseg.reproduce --data data --method stardist3d --variant lightaug
 ```
 
@@ -111,6 +112,7 @@ are 3–75 s per test volume (Table 2 of the manuscript).
 | `stardist3d/stardist_<dataset>_{noaug,lightaug}_final/` | StarDist3D (with the thresholds optimised on validation data) |
 | `cellpose/<dataset>_chunked/` | Cellpose 3 |
 | `cellpose_sam/<dataset>/` | Cellpose-SAM (fine-tuned) |
+| `cellpose_sam/Dataset10{1-5,8}_*/` | Cellpose-SAM trained on the pooled sets of nnU-Net v2 (Supplementary Table S12) |
 | `microsam/checkpoints/microsam_vit_b_lm_finetuned_<dataset>/` | micro-SAM (fine-tuned vit_b_lm) |
 
 The inference settings of every model (post-processing thresholds selected on validation data, StarDist3D
@@ -134,7 +136,7 @@ The training code of each method is in its folder; set the dataset path in the c
 | 3D U-Net | `unet/config.py` | `python unet/train.py` |
 | StarDist3D | `stardist/config.py` | `python stardist/train.py` |
 | Cellpose 3 | parameters at the top of `cellpose/train_chunked.py` | `python cellpose/train_chunked.py` |
-| Cellpose-SAM | command-line options | `python cellpose_sam/train_cpsam.py prep --dataset data/<dataset> --cache cache/<dataset>`, then `python cellpose_sam/train_cpsam.py train --cache cache/<dataset> --out models/<dataset>` |
+| Cellpose-SAM | command-line options | `python cellpose_sam/train_cpsam.py prep --dataset data/<dataset> --cache cache/<dataset>`, then `python cellpose_sam/train_cpsam.py train --cache cache/<dataset> --out models/<dataset>`; pooled sets: several caches separated by commas and `--nimg-per-epoch 1618` (fixed iteration budget of the manuscript) |
 | micro-SAM | `microsam/config_microsam.py` | `python microsam/train_microsam.py` |
 
 The training settings of the released models are listed in Supplementary Table S1 of the manuscript.

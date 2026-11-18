@@ -1,5 +1,5 @@
 {
- "note": "Manuscript (revised) values on the test sets, mean over the 4 test volumes, in %. within: model trained on the test dataset; transfer: nnU-Net v2 experiments of Tables 3 and 4.",
+ "note": "Manuscript (revised) values on the test sets, mean over the 4 test volumes, in %. within: model trained on the test dataset; transfer_nnunet: nnU-Net v2 experiments of Tables 3 and 4; transfer_cellpose_sam: the same experiments with Cellpose-SAM (Supplementary Table S12).",
  "within": {
   "nnunet": {
    "human_neurons_dodt": {
@@ -491,6 +491,156 @@
     "Obj_F1@0.5": 29.28,
     "mAP_0.5_0.95": 9.98,
     "Pixel_Dice": 49.83
+   }
+  }
+ },
+ "transfer_cellpose_sam": {
+  "Dataset101_XD_RatMice_Dodt": {
+   "human_neurons_dodt": {
+    "AJI": 28.89,
+    "Obj_F1@0.5": 9.11,
+    "mAP_0.5_0.95": 3.34,
+    "Pixel_Dice": 49.39
+   }
+  },
+  "Dataset102_XD_RatMice_Oblique": {
+   "human_neurons_oblique": {
+    "AJI": 12.23,
+    "Obj_F1@0.5": 2.7,
+    "mAP_0.5_0.95": 0.77,
+    "Pixel_Dice": 22.6
+   }
+  },
+  "Dataset103_XD_AllSpecies_Dodt": {
+   "human_neurons_dodt": {
+    "AJI": 36.09,
+    "Obj_F1@0.5": 19.26,
+    "mAP_0.5_0.95": 8.76,
+    "Pixel_Dice": 57.42
+   },
+   "mice_neurons_dodt": {
+    "AJI": 48.49,
+    "Obj_F1@0.5": 46.78,
+    "mAP_0.5_0.95": 18.91,
+    "Pixel_Dice": 66.93
+   },
+   "rat_neurons_dodt": {
+    "AJI": 43.67,
+    "Obj_F1@0.5": 36.67,
+    "mAP_0.5_0.95": 15.5,
+    "Pixel_Dice": 62.37
+   }
+  },
+  "Dataset104_XD_AllSpecies_Oblique": {
+   "human_neurons_oblique": {
+    "AJI": 24.57,
+    "Obj_F1@0.5": 9.15,
+    "mAP_0.5_0.95": 2.87,
+    "Pixel_Dice": 42.52
+   },
+   "rat_neurons_oblique": {
+    "AJI": 49.96,
+    "Obj_F1@0.5": 49.51,
+    "mAP_0.5_0.95": 22.45,
+    "Pixel_Dice": 68.54
+   },
+   "mice_neurons_oblique": {
+    "AJI": 41.85,
+    "Obj_F1@0.5": 34.74,
+    "mAP_0.5_0.95": 12.18,
+    "Pixel_Dice": 60.96
+   }
+  },
+  "Dataset105_XD_AllSpecies_Mixed": {
+   "human_neurons_dodt": {
+    "AJI": 31.11,
+    "Obj_F1@0.5": 17.69,
+    "mAP_0.5_0.95": 5.67,
+    "Pixel_Dice": 50.69
+   },
+   "mice_neurons_dodt": {
+    "AJI": 44.54,
+    "Obj_F1@0.5": 42.36,
+    "mAP_0.5_0.95": 14.8,
+    "Pixel_Dice": 63.37
+   },
+   "rat_neurons_dodt": {
+    "AJI": 30.63,
+    "Obj_F1@0.5": 17.51,
+    "mAP_0.5_0.95": 4.63,
+    "Pixel_Dice": 50.29
+   },
+   "human_neurons_oblique": {
+    "AJI": 21.43,
+    "Obj_F1@0.5": 6.72,
+    "mAP_0.5_0.95": 2.13,
+    "Pixel_Dice": 37.28
+   },
+   "rat_neurons_oblique": {
+    "AJI": 45.81,
+    "Obj_F1@0.5": 45.74,
+    "mAP_0.5_0.95": 18.71,
+    "Pixel_Dice": 66.67
+   },
+   "mice_neurons_oblique": {
+    "AJI": 39.35,
+    "Obj_F1@0.5": 31.63,
+    "mAP_0.5_0.95": 10.64,
+    "Pixel_Dice": 57.93
+   }
+  },
+  "Dataset106_XM_Dodt2Oblique": {
+   "human_neurons_oblique": {
+    "AJI": 25.98,
+    "Obj_F1@0.5": 11.02,
+    "mAP_0.5_0.95": 3.34,
+    "Pixel_Dice": 44.03
+   },
+   "rat_neurons_oblique": {
+    "AJI": 37.21,
+    "Obj_F1@0.5": 37.26,
+    "mAP_0.5_0.95": 15.02,
+    "Pixel_Dice": 58.23
+   },
+   "mice_neurons_oblique": {
+    "AJI": 34.2,
+    "Obj_F1@0.5": 29.78,
+    "mAP_0.5_0.95": 6.31,
+    "Pixel_Dice": 54.76
+   }
+  },
+  "Dataset107_XM_Oblique2Dodt": {
+   "human_neurons_dodt": {
+    "AJI": 15.11,
+    "Obj_F1@0.5": 0.0,
+    "mAP_0.5_0.95": 0.0,
+    "Pixel_Dice": 29.63
+   },
+   "mice_neurons_dodt": {
+    "AJI": 16.28,
+    "Obj_F1@0.5": 4.16,
+    "mAP_0.5_0.95": 0.77,
+    "Pixel_Dice": 30.06
+   },
+   "rat_neurons_dodt": {
+    "AJI": 11.34,
+    "Obj_F1@0.5": 0.0,
+    "mAP_0.5_0.95": 0.0,
+    "Pixel_Dice": 23.33
+   }
+  },
+  "Dataset108_XM_Human_DodtOblique": {
+   "human_neurons_dodt": {
+    "AJI": 37.31,
+    "Obj_F1@0.5": 19.09,
+    "mAP_0.5_0.95": 10.47,
+    "Pixel_Dice": 58.16
+   },
+   "human_neurons_oblique": {
+    "AJI": 28.78,
+    "Obj_F1@0.5": 8.17,
+    "mAP_0.5_0.95": 4.95,
+    "Pixel_Dice": 48.6
    }
   }
  }

@@ -1,39 +1,47 @@
 {
   "title": "3d-neurons-segmentation: code for the XSoma3D dataset and benchmark",
   "upload_type": "software",
-  "description": "<p>Code accompanying the article “XSoma3D a large scale neuronal dataset revealing cross species generalization in label free microscopy”. It contains the training code of the benchmarked methods (nnU-Net v2, 3D U-Net, StarDist3D, Cellpose 3, Cellpose-SAM, micro-SAM), the evaluation scripts and the <code>neuroseg</code> package, which downloads the XSoma3D dataset from Zenodo, loads the trained models from Hugging Face and reproduces the reported test results.</p><p>Dataset: https://doi.org/10.5281/zenodo.19812777. Trained models: https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation.</p>",
+  "description": "<p>Code accompanying the article “XSoma3D a large scale neuronal dataset revealing cross species generalization in label free microscopy”. It contains the training code of the benchmarked methods (nnU-Net v2, 3D U-Net, StarDist3D, Cellpose 3, Cellpose-SAM, micro-SAM), the evaluation scripts and the <code>neuroseg</code> package, which downloads the XSoma3D dataset from Zenodo, loads the trained models from Hugging Face and reproduces the reported test results, including the transfer and pooling experiments of nnU-Net v2 and Cellpose-SAM.</p><p>Dataset: https://doi.org/10.5281/zenodo.19812777. Trained models: https://huggingface.co/Podtyazhki1337/3d-neurons-segmentation.</p>",
   "creators": [
     {
       "name": "Maiurov, Miroslav",
-      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary"
+      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary",
+      "orcid": "0009-0005-5935-6452"
     },
     {
       "name": "Pál, Viktor",
-      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary"
+      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary",
+      "orcid": "0009-0009-6467-6142"
     },
     {
       "name": "Péterfi, Zoltán",
-      "affiliation": "University of Szeged, Szeged, Hungary"
+      "affiliation": "University of Szeged, Szeged, Hungary",
+      "orcid": "0009-0003-1425-6410"
     },
     {
       "name": "Stellato, Mariachiara",
-      "affiliation": "University of Bologna, Bologna, Italy"
+      "affiliation": "University of Bologna, Bologna, Italy",
+      "orcid": "0000-0003-4425-4427"
     },
     {
       "name": "Molnár, Gábor",
-      "affiliation": "University of Szeged, Szeged, Hungary"
+      "affiliation": "University of Szeged, Szeged, Hungary",
+      "orcid": "0000-0001-7959-139X"
     },
     {
       "name": "Tamás, Gábor",
-      "affiliation": "University of Szeged, Szeged, Hungary"
+      "affiliation": "University of Szeged, Szeged, Hungary",
+      "orcid": "0000-0002-7905-6001"
     },
     {
       "name": "Piccinini, Filippo",
-      "affiliation": "University of Bologna, Bologna, Italy"
+      "affiliation": "University of Bologna, Bologna, Italy",
+      "orcid": "0000-0002-0371-7782"
     },
     {
       "name": "Horváth, Péter",
-      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary"
+      "affiliation": "HUN-REN Biological Research Centre, Szeged, Hungary",
+      "orcid": "0000-0002-4492-1798"
     }
   ],
   "license": "mit",

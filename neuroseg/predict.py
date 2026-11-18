@@ -4,7 +4,7 @@
     python -m neuroseg.predict --method cellpose_sam --model human_oblique --input folder_with_tifs/ --output out/
 
 --model: the training data of the model: a dataset (human_dgc, mouse_dgc, rat_dgc, human_oblique, rat_oblique,
-mouse_oblique, or the Zenodo names) or, for nnU-Net, a pooled set (rat_mouse_dgc, rat_mouse_oblique, all_dgc,
+mouse_oblique, or the Zenodo names) or, for nnU-Net and Cellpose-SAM, a pooled set (rat_mouse_dgc, rat_mouse_oblique, all_dgc,
 all_oblique, all_dgc_oblique, human_dgc_oblique). Choose a model trained on the modality of your images; the
 models expect (Z, Y, X) stacks at the voxel size of that modality (DGC 1 x 0.115 x 0.115 um, oblique
 1 x 0.171 x 0.171 um). Output: <output>/<input name>.tif with one integer label per soma.

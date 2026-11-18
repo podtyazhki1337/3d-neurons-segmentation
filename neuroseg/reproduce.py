@@ -3,6 +3,7 @@
     python -m neuroseg.download_data --out data
     python -m neuroseg.reproduce --data data --method nnunet                        # within-domain, six test sets
     python -m neuroseg.reproduce --data data --method nnunet --experiment transfer  # Tables 3 and 4 (nnU-Net v2)
+    python -m neuroseg.reproduce --data data --method cellpose_sam --experiment transfer  # Supplementary Table S12
     python -m neuroseg.reproduce --data data --method stardist3d --variant lightaug --datasets rat_dgc
 
 For every test volume of split.json the released model predicts the instances (same pipeline as the manuscript),
@@ -23,12 +24,13 @@ import numpy as np
 from .io import read_volume, write_labels
 from .methods import load_model
 from .metrics import METRIC_COLUMNS, evaluate_volume, summarize
-from .registry import DATASETS, DEFAULT_VARIANT, METHODS, NNUNET_ID, resolve_dataset
+from .registry import DATASETS, DEFAULT_VARIANT, METHODS, POOLED_METHODS, resolve_dataset
 
 REF = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "reference_results.json")))
 DGC = ["human_neurons_dodt", "rat_neurons_dodt", "mice_neurons_dodt"]
 OBL = ["human_neurons_oblique", "rat_neurons_oblique", "mice_neurons_oblique"]
-# nnU-Net v2 transfer and pooling experiments: experiment -> (training data of the model, test datasets)
+# transfer and pooling experiments (nnU-Net v2: Tables 3 and 4; Cellpose-SAM: Supplementary Table S12):
+# experiment -> (training data of the model, test datasets)
 TRANSFER = {
     "Dataset107_XM_Oblique2Dodt": ("all_oblique", DGC), "Dataset106_XM_Dodt2Oblique": ("all_dgc", OBL),
     "Dataset101_XD_RatMice_Dodt": ("rat_mouse_dgc", ["human_neurons_dodt"]),
@@ -75,8 +77,11 @@ def main():
     ap.add_argument("--method", required=True, choices=METHODS)
     ap.add_argument("--variant", default=None)
     ap.add_argument("--experiment", choices=["within", "transfer"], default="within",
-                    help="transfer: nnU-Net v2 transfer and pooling experiments (Tables 3 and 4)")
+                    help="transfer: transfer and pooling experiments (nnU-Net v2: Tables 3 and 4; Cellpose-SAM: "
+                         "Supplementary Table S12)")
     ap.add_argument("--datasets", nargs="*", default=None, help="within-domain: subset of datasets (default: all)")
+    ap.add_argument("--experiments", nargs="*", default=None,
+                    help=f"transfer: subset of the experiments (default: all): {', '.join(TRANSFER)}")
     ap.add_argument("--out", default="results")
     ap.add_argument("--low-memory", action="store_true",
                     help="nnU-Net: combine the sliding-window predictions on the CPU (less GPU memory, same result)")
@@ -91,11 +96,16 @@ def main():
         for ds in [resolve_dataset(d) for d in (a.datasets or DATASETS)]:
             jobs.append((ds, ds, ds, REF["within"].get(ref_key(a.method, a.variant), {}).get(ds, {})))
     else:
-        if a.method != "nnunet":
-            raise SystemExit("transfer experiments: released models exist for nnU-Net v2 only")
+        if a.method not in POOLED_METHODS:
+            raise SystemExit(f"transfer experiments: released models exist for {', '.join(POOLED_METHODS)} only")
+        unknown = set(a.experiments or []) - set(TRANSFER)
+        if unknown:
+            raise SystemExit(f"unknown experiments {sorted(unknown)}; use {list(TRANSFER)}")
         for exp, (train, tests) in TRANSFER.items():
+            if a.experiments and exp not in a.experiments:
+                continue
             for ds in tests:
-                jobs.append((exp, train, ds, REF["transfer_nnunet"].get(exp, {}).get(ds, {})))
+                jobs.append((exp, train, ds, REF[f"transfer_{a.method}"].get(exp, {}).get(ds, {})))
 
     lines = [f"# {tag}, {a.experiment}", "",
              "| Experiment | Test dataset | " + " | ".join(f"{m} (reproduced) | {m} (manuscript)" for m in SHOW) + " |",
